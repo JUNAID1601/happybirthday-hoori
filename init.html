@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Happy Birthday, Bestie! 🌙🎈</title>
+  <meta name="description" content="A cute birthday page with a moon for August 9, 2010, floating balloons, and confetti." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Sacramento&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg1: #0b1026;
+      --bg2: #141a3a;
+      --card: rgba(255, 255, 255, 0.10);
+      --card-border: rgba(255, 255, 255, 0.16);
+      --accent: #ff9bd2;
+      --accent-2: #a5b4fc;
+      --text: #f5f7ff;
+      --muted: #cbd5ff;
+      --glow: 0 10px 30px rgba(255, 155, 210, 0.35), 0 0 60px rgba(165, 180, 252, 0.25);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      color: var(--text);
+      background: radial-gradient(1200px 800px at 20% 10%, #1a2152 0%, var(--bg2) 50%, var(--bg1) 100%);
+      font-family: Poppins, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      overflow-x: hidden;
+    }
+
+    .stars {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background-image:
+        radial-gradient(2px 2px at 10% 20%, rgba(255,255,255,0.7) 40%, transparent 41%),
+        radial-gradient(1.5px 1.5px at 30% 80%, rgba(255,255,255,0.6) 40%, transparent 41%),
+        radial-gradient(1.8px 1.8px at 70% 30%, rgba(255,255,255,0.7) 40%, transparent 41%),
+        radial-gradient(1.2px 1.2px at 80% 70%, rgba(255,255,255,0.5) 40%, transparent 41%),
+        radial-gradient(1.6px 1.6px at 50% 50%, rgba(255,255,255,0.6) 40%, transparent 41%);
+      opacity: 0.8;
+      animation: twinkle 6s ease-in-out infinite alternate;
+    }
+
+    @keyframes twinkle {
+      0% { opacity: 0.6; }
+      100% { opacity: 0.9; }
+    }
+
+    .container {
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 32px 16px 80px;
+      position: relative;
+    }
+
+    .card {
+      position: relative;
+      margin: 80px auto 24px;
+      padding: 28px;
+      background: var(--card);
+      border: 1px solid var(--card-border);
+      border-radius: 20px;
+      backdrop-filter: blur(8px);
+      box-shadow: var(--glow);
+    }
+
+    h1 {
+      margin: 0 0 6px;
+      font-family: Sacramento, cursive;
+      font-weight: 700;
+      font-size: 56px;
+      letter-spacing: 0.5px;
+      color: #ffe0f2;
+      text-shadow: 0 2px 0 rgba(0,0,0,0.15);
+    }
+
+    .subtitle {
+      margin: 0 0 16px;
+      font-weight: 400;
+      color: var(--muted);
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: 1.1fr 1fr;
+      gap: 20px;
+    }
+
+    @media (max-width: 860px) {
+      .grid { grid-template-columns: 1fr; }
+    }
+
+    .moon-panel {
+      position: relative;
+      padding: 18px;
+      border-radius: 16px;
+      background: rgba(255,255,255,0.06);
+      border: 1px dashed rgba(255,255,255,0.18);
+    }
+
+    .moon-title {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin: 0 0 10px;
+      font-weight: 600;
+      color: #ffd7fb;
+    }
+
+    canvas#moonCanvas {
+      
+      display: block;
+      width: 100%;
+      max-width: 360px;
+      aspect-ratio: 1 / 1;
+      margin: 10px auto 6px;
+      border-radius: 50%;
+      box-shadow: 0 0 0 8px rgba(255, 255, 255, 0.05), 0 8px 40px rgba(165, 180, 252, 0.35);
+      background: radial-gradient(120px 120px at 40% 35%, rgba(255,255,255,0.06), rgba(0,0,0,0.0));
+    }
+
+    .moon-caption {
+      text-align: center;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .info {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin: 16px 0 8px;
+    }
+
+    .pill {
+      padding: 10px 12px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.14);
+      border-radius: 999px;
+      text-align: center;
+      font-weight: 600;
+      color: #ffe1f5;
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .btn {
+      appearance: none;
+      border: 0;
+      padding: 12px 16px;
+      border-radius: 12px;
+      font-weight: 700;
+      cursor: pointer;
+      color: #241a2f;
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      box-shadow: var(--glow);
+      transition: transform 0.15s ease, filter 0.2s ease;
+    }
+
+    .btn:hover { transform: translateY(-1px) scale(1.01); filter: brightness(1.05); }
+    .btn:active { transform: translateY(0); filter: brightness(0.98); }
+
+    .note {
+      margin-top: 10px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    /* Floating balloons */
+    .balloon {
+      position: fixed;
+      bottom: -120px;
+      width: 36px;
+      height: 48px;
+      border-radius: 50% 50% 45% 45%;
+      background: var(--accent);
+      box-shadow: 0 6px 20px rgba(255, 155, 210, 0.35);
+      animation: floatUp linear infinite;
+      opacity: 0.9;
+      z-index: 1;
+    }
+    .balloon::after {
+      content: "";
+      position: absolute;
+      bottom: -16px;
+      left: 50%;
+      width: 2px;
+      height: 28px;
+      background: rgba(255,255,255,0.5);
+      transform: translateX(-50%);
+    }
+    .balloon.blue { background: #a5b4fc; box-shadow: 0 6px 20px rgba(165, 180, 252, 0.35); }
+    .balloon.yellow { background: #ffe08a; box-shadow: 0 6px 20px rgba(255, 224, 138, 0.35); }
+
+    @keyframes floatUp {
+      0% { transform: translateY(0) translateX(0) rotate(0deg); opacity: 0; }
+      10% { opacity: 1; }
+      50% { transform: translateY(-50vh) translateX(10px) rotate(3deg); }
+      100% { transform: translateY(-110vh) translateX(-10px) rotate(-3deg); opacity: 0; }
+    }
+
+    /* Confetti canvas overlays everything but ignores pointer events */
+    #confettiCanvas {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 2;
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 18px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+    img{
+      display: block;
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: cover;
+      border-radius: 50%;
+      position: absolute;
+      top: -35px;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      margin: auto;
+    }
+    @media (max-width: 860px) {
+      img{
+        max-width: 70%;
+        max-height: 70%;
+        object-fit: cover;
+        border-radius: 50%;
+        position: absolute;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="stars"></div>
+  <canvas id="confettiCanvas"></canvas>
+
+  <div class="container">
+    <div class="card">
+      <h1>Happy Birthday, Hoori! ✨</h1>
+      <p class="subtitle">Celebrating your magical day: <strong>9 August 2010</strong></p>
+
+      <div class="grid">
+        <section class="moon-panel">
+          <p class="moon-title">🌙 Moon on 9 August 2010 <span id="moonName"></span></p>
+          <canvas id="moonCanvas" width="360" height="360" aria-label="Stylized moon for 9 August 2010">
+          </canvas>
+          <img src="https://lunaf.com/img/moon/phase-31.webp">
+          <p class="moon-caption">An artistic rendering of the Moon as it appeared on your birthday.</p>
+        </section>
+
+        <section>
+          <div class="info">
+            <div class="pill" id="agePill">Age: —</div>
+            <div class="pill" id="countdownPill">Next birthday in: —</div>
+          </div>
+          <p>
+            To my dearest best friend: you brighten every sky like the Moon on a clear night. May your year be full of sparkle, giggles, and sweet moonlight adventures! 💖
+          </p>
+          <div class="actions">
+            <button class="btn" id="celebrateBtn">Celebrate! 🎉</button>
+            <button class="btn" id="toggleBalloonsBtn">Toggle Balloons 🎈</button>
+          </div>
+          <p class="note">Tip: Want a real photograph? Replace this moon with your favorite photo from a space website for <strong>2010‑08‑09</strong> — but this one is drawn just for you! 🌝</p>
+        </section>
+      </div>
+    </div>
+
+    <footer>
+      Made with love, stars, and a little JavaScript.
+    </footer>
+  </div>
+
+  <!-- Decorative balloons (generated by JS) -->
+
+  <script>
+    // Birthday date constants
+    const BIRTHDAY_DATE_ISO = '2010-08-09T00:00:00Z';
+
+    function pad(num) { return num < 10 ? '0' + num : '' + num; }
+
+    function computeAge(birthDate) {
+      const now = new Date();
+      let years = now.getFullYear() - birthDate.getFullYear();
+      const hasHadBirthdayThisYear = (now.getMonth() > birthDate.getMonth()) ||
+        (now.getMonth() === birthDate.getMonth() && now.getDate() >= birthDate.getDate());
+      if (!hasHadBirthdayThisYear) years -= 1;
+      return years;
+    }
+
+    function computeNextBirthdayCountdown(monthIndex, day) {
+      const now = new Date();
+      const year = now.getMonth() > monthIndex || (now.getMonth() === monthIndex && now.getDate() > day) ? now.getFullYear() + 1 : now.getFullYear();
+      const next = new Date(year, monthIndex, day, 0, 0, 0, 0);
+      const diffMs = next - now;
+      const days = Math.floor(diffMs / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((diffMs % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const mins = Math.floor((diffMs % (1000 * 60 * 60)) / (1000 * 60));
+      const secs = Math.floor((diffMs % (1000 * 60)) / 1000);
+      return { days, hours, mins, secs };
+    }
+
+    // Julian Day calculation (UTC)
+    function toJulianDay(date) {
+      const year = date.getUTCFullYear();
+      let month = date.getUTCMonth() + 1; // 1-12
+      const day = date.getUTCDate() + (date.getUTCHours() / 24) + (date.getUTCMinutes() / 1440) + (date.getUTCSeconds() / 86400);
+      if (month <= 2) { month += 12; }
+      const A = Math.floor(year / 100);
+      const B = 2 - A + Math.floor(A / 4);
+      const jd = Math.floor(365.25 * (year + 4716)) + Math.floor(30.6001 * (month + 1)) + day + B - 1524.5;
+      return jd;
+    }
+
+    // Approximate lunar phase fraction (0=new, 0.5=full, 1=new)
+    function lunarPhaseFraction(date) {
+      const synodicMonth = 29.53058867; // days
+      const knownNewMoonJD = 2451550.1; // 2000-01-06 18:14 UT
+      const jd = toJulianDay(date);
+      const daysSince = jd - knownNewMoonJD;
+      const phase = daysSince / synodicMonth;
+      const frac = phase - Math.floor(phase);
+      return frac;
+    }
+
+    function moonPhaseName(frac) {
+      const names = [
+        'New Moon',
+        'Waxing Crescent',
+        'First Quarter',
+        'Waxing Gibbous',
+        'Full Moon',
+        'Waning Gibbous',
+        'Last Quarter',
+        'Waning Crescent'
+      ];
+      const idx = Math.floor(((frac + 0.0625) % 1) / 0.125);
+      return names[idx];
+    }
+
+    function drawStylizedMoon(canvas, frac) {
+      const ctx = canvas.getContext('2d');
+      const W = canvas.width;
+      const H = canvas.height;
+      ctx.clearRect(0, 0, W, H);
+
+      // Center and radius
+      const r = Math.min(W, H) * 0.38;
+      const cx = W / 2;
+      const cy = H / 2;
+
+      // Background glow
+      const glow = ctx.createRadialGradient(cx, cy, r * 0.2, cx, cy, r * 1.4);
+      glow.addColorStop(0, 'rgba(255, 220, 255, 0.18)');
+      glow.addColorStop(1, 'rgba(255, 220, 255, 0.00)');
+      ctx.fillStyle = glow;
+      ctx.beginPath();
+      ctx.arc(cx, cy, r * 1.45, 0, Math.PI * 2);
+      ctx.fill();
+
+      // Moon base (bright)
+      const baseGrad = ctx.createRadialGradient(cx - r * 0.25, cy - r * 0.25, r * 0.2, cx, cy, r);
+      baseGrad.addColorStop(0, '#fffaf2');
+      baseGrad.addColorStop(1, '#d8d9e1');
+      ctx.fillStyle = baseGrad;
+      ctx.beginPath();
+      ctx.arc(cx, cy, r, 0, Math.PI * 2);
+      ctx.fill();
+
+      // Soft limb shadow for depth
+      const limb = ctx.createRadialGradient(cx + r * 0.2, cy + r * 0.2, r * 0.2, cx, cy, r * 1.05);
+      limb.addColorStop(0, 'rgba(0,0,0,0.0)');
+      limb.addColorStop(1, 'rgba(0,0,0,0.18)');
+      ctx.fillStyle = limb;
+      ctx.beginPath();
+      ctx.arc(cx, cy, r, 0, Math.PI * 2);
+      ctx.fill();
+
+      // Cute little craters
+      function crater(xo, yo, rr) {
+        ctx.save();
+        ctx.beginPath();
+        ctx.arc(cx + xo, cy + yo, rr, 0, Math.PI * 2);
+        ctx.clip();
+        const cgrad = ctx.createLinearGradient(cx + xo - rr, cy + yo - rr, cx + xo + rr, cy + yo + rr);
+        cgrad.addColorStop(0, 'rgba(0,0,0,0.12)');
+        cgrad.addColorStop(1, 'rgba(255,255,255,0.18)');
+        ctx.fillStyle = cgrad;
+        ctx.fillRect(cx + xo - rr, cy + yo - rr, rr * 2, rr * 2);
+        ctx.restore();
+      }
+      crater(-r * 0.20, -r * 0.05, r * 0.10);
+      crater(r * 0.12, r * 0.08, r * 0.07);
+      crater(-r * 0.05, r * 0.22, r * 0.06);
+      crater(r * 0.22, -r * 0.18, r * 0.05);
+
+      // Phase shadow (artistic approximation)
+      // frac: 0=new, 0.5=full, 1=new
+      const w = 1 - Math.abs(2 * frac - 1); // 0..1 (0=new, 1=full)
+      const waxing = frac < 0.5; // illuminated on the right when waxing
+
+      ctx.save();
+      // Clip to moon disc
+      ctx.beginPath();
+      ctx.arc(cx, cy, r, 0, Math.PI * 2);
+      ctx.clip();
+
+      // Dark overlay covering the moon
+      ctx.fillStyle = 'rgba(10, 12, 24, 0.88)';
+      ctx.fillRect(cx - r - 2, cy - r - 2, r * 2 + 4, r * 2 + 4);
+
+      // Carve out the illuminated part using an ellipse
+      ctx.globalCompositeOperation = 'destination-out';
+      ctx.beginPath();
+      const rx = Math.max(0.0001, r * w);
+      const shift = (waxing ? 1 : -1) * r * (1 - w);
+      ctx.ellipse(cx + shift, cy, rx, r, 0, 0, Math.PI * 2);
+      ctx.fill();
+
+      ctx.globalCompositeOperation = 'source-over';
+      ctx.restore();
+
+      // Subtle stars sparkle around the moon
+      ctx.fillStyle = 'rgba(255,255,255,0.7)';
+      for (let i = 0; i < 30; i++) {
+        const a = Math.random() * Math.PI * 2;
+        const d = r * (1.2 + Math.random() * 0.5);
+        const x = cx + Math.cos(a) * d;
+        const y = cy + Math.sin(a) * d;
+        const s = Math.random() * 1.8 + 0.3;
+        ctx.globalAlpha = Math.random() * 0.6 + 0.2;
+        ctx.beginPath();
+        ctx.arc(x, y, s, 0, Math.PI * 2);
+        ctx.fill();
+      }
+      ctx.globalAlpha = 1;
+    }
+
+    // Simple confetti
+    function partyConfetti(durationMs = 3000) {
+      const canvas = document.getElementById('confettiCanvas');
+      const ctx = canvas.getContext('2d');
+      const dpr = Math.max(1, window.devicePixelRatio || 1);
+      function resize() {
+        canvas.width = Math.floor(window.innerWidth * dpr);
+        canvas.height = Math.floor(window.innerHeight * dpr);
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      }
+      resize();
+
+      const colors = ['#ff9bd2', '#ffd166', '#a5b4fc', '#b9fbc0', '#f8f9ff'];
+      const pieces = [];
+      const count = Math.min(180, Math.floor(window.innerWidth / 6));
+      for (let i = 0; i < count; i++) {
+        pieces.push({
+          x: Math.random() * window.innerWidth,
+          y: -20 - Math.random() * window.innerHeight * 0.5,
+          r: Math.random() * 6 + 4,
+          color: colors[i % colors.length],
+          tilt: Math.random() * 1,
+          vy: 2 + Math.random() * 3.5,
+          vx: -1 + Math.random() * 2,
+          rot: Math.random() * Math.PI * 2,
+          vr: -0.2 + Math.random() * 0.4
+        });
+      }
+
+      let running = true;
+      const endAt = performance.now() + durationMs;
+
+      function tick(now) {
+        if (!running) return;
+        if (now > endAt) running = false;
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        for (const p of pieces) {
+          p.x += p.vx;
+          p.y += p.vy;
+          p.rot += p.vr;
+          p.tilt += 0.1;
+          if (p.y > window.innerHeight + 30) {
+            p.y = -20; p.x = Math.random() * window.innerWidth;
+          }
+          ctx.save();
+          ctx.translate(p.x, p.y);
+          ctx.rotate(p.rot);
+          ctx.fillStyle = p.color;
+          ctx.fillRect(-p.r, -p.r * 0.3, p.r * 2, p.r * 0.6);
+          ctx.restore();
+        }
+        if (running) requestAnimationFrame(tick);
+        else ctx.clearRect(0, 0, canvas.width, canvas.height);
+      }
+
+      requestAnimationFrame(tick);
+      window.addEventListener('resize', resize, { passive: true });
+      setTimeout(() => window.removeEventListener('resize', resize), durationMs + 1000);
+    }
+
+    // Balloons generator
+    let balloonsEnabled = true;
+    function spawnBalloons() {
+      const colors = ['balloon', 'balloon blue', 'balloon yellow'];
+      for (let i = 0; i < 10; i++) {
+        const b = document.createElement('div');
+        b.className = colors[i % colors.length];
+        b.style.left = Math.random() * 100 + 'vw';
+        b.style.animationDuration = (12 + Math.random() * 10) + 's';
+        b.style.animationDelay = (Math.random() * 8) + 's';
+        b.style.transform = 'translateY(0)';
+        document.body.appendChild(b);
+      }
+    }
+
+    function removeBalloons() {
+      document.querySelectorAll('.balloon').forEach(b => b.remove());
+    }
+
+    // Initialize UI
+    function init() {
+      const birth = new Date(BIRTHDAY_DATE_ISO);
+      const ageYears = computeAge(birth);
+      document.getElementById('agePill').textContent = 'Age: ' + ageYears + ' years';
+
+      function updateCountdown() {
+        const { days, hours, mins, secs } = computeNextBirthdayCountdown(7, 9); // August=7, day=9
+        document.getElementById('countdownPill').textContent = `Next birthday in: ${days}d ${pad(hours)}h ${pad(mins)}m ${pad(secs)}s`;
+      }
+      updateCountdown();
+      setInterval(updateCountdown, 1000);
+
+      // Moon for 2010-08-09 (UTC)
+      const moonDate = new Date('2010-08-09T00:00:00Z');
+      const frac = lunarPhaseFraction(moonDate);
+      const canvas = document.getElementById('moonCanvas');
+      drawStylizedMoon(canvas, frac);
+      document.getElementById('moonName').textContent = '• ' + moonPhaseName(frac);
+
+      // Actions
+      document.getElementById('celebrateBtn').addEventListener('click', () => partyConfetti(3500));
+      document.getElementById('toggleBalloonsBtn').addEventListener('click', () => {
+        balloonsEnabled = !balloonsEnabled;
+        if (balloonsEnabled) spawnBalloons(); else removeBalloons();
+      });
+
+      // Start with balloons
+      spawnBalloons();
+    }
+
+    window.addEventListener('DOMContentLoaded', init);
+  </script>
+</body>
+</html>
